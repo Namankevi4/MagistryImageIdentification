@@ -1,0 +1,24 @@
+﻿@model DeleteImageViewModel
+
+<form method="post" action="/Actions/DeleteImage">
+    @Html.LabelFor(model => model.ImageName, new { @class = "col-form-label col-md-5" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(model => model.ImageName, new { @class = "col-md-5", @id = "imagePathId" })
+        <input type="submit" id="deleteImage" value="Delete">
+    </div>
+</form>
+<div class="col-form-label col-md-2">
+    <button id="deleteAll" onclick="location.href = '@Url.Action("DeleteAll","Actions")'">Delete all</button>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#deleteAll").click(function () {
+            debugger;
+            $("[role=main]").append("<div class='spinner'></div>");
+        });
+        $("#deleteImage").click(function () {
+            debugger;
+            $("[role=main]").append("<div class='spinner'></div>");
+        });
+    });
+</script>

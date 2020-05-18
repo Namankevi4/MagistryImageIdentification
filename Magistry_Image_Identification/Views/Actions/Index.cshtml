@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="text-left">
+    <h1>Actions</h1>
+    <div class="col-form-label col-md-10">
+        <a href="@ViewData["imageStorePath"]" target="_blank" title="Click to open images store">Images store</a>
+        <div>
+            Count of images: @ViewData["countOfImages"]
+        </div>
+    </div>
+
+    <div class="col-form-label col-md-10">
+        <label for="add">Add</label>
+        <input style="margin-right: 20px" type="radio" name="actions" id="add" value="Add" checked>
+        <label for="delete">Delete</label>
+        <input type="radio" name="actions" id="delete" value="Delete">
+    </div>
+    <div class="text-left" id="actionForm">
+        @await Html.PartialAsync("AddImages")
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("[name=actions]").on('change',
+            function () {
+                var $radio = $(this);
+                var myurl = "Actions/ActionView?actionType=" + $radio.val();
+                $.ajax({
+                    url: myurl,
+                    type: 'POST',
+                    success: function (data) {
+                        $("#actionForm").empty();
+                        $("#actionForm").append(data);
+                    }
+                });
+            });
+    });
+</script>

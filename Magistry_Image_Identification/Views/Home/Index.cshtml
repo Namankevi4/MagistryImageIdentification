@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model ImageViewModel
+
+<div class="text-left">
+    <h1>Find Image</h1>
+    <form method="post" action="/Home/FindImage">
+        @Html.LabelFor(model => model.ImagePath, new {@class = "col-form-label col-md-2"})
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.ImagePath, new {@class = "col-md-5", @id = "imagePathId"})
+            <input type="submit" id="showImage" value="Find Image">
+        </div>
+        <img id="imgArea" src="">
+    </form>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#showImage").click(function () {
+            debugger;
+            $("[role=main]").append("<div class='spinner'></div>");
+        });
+    });
+</script>

@@ -1,0 +1,17 @@
+﻿@model AddImageViewModel
+
+<form method="post" action="/Actions/AddImages">
+    @Html.LabelFor(model => model.ImageOrFolderPath, new {@class = "col-form-label col-md-5"})
+    <div class="col-md-10">
+        @Html.TextBoxFor(model => model.ImageOrFolderPath, new {@class = "col-md-5", @id = "imagePathId"})
+        <input type="submit" id="addImage" value="Add">
+    </div>
+</form>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#addImage").click(function () {
+            debugger;
+            $("[role=main]").append("<div class='spinner'></div>");
+        });
+    });
+</script>
