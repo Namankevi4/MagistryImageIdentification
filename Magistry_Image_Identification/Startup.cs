@@ -59,6 +59,8 @@ namespace Magistry_Image_Identification
 
             var pathToImageFolder = Configuration.GetSection("ApplicationSettings").GetValue<string>("PathToImagesFolder");
 
+            Directory.CreateDirectory(Path.Combine(env.WebRootPath, pathToImageFolder));
+
             app.UseDirectoryBrowser(new DirectoryBrowserOptions
             {
                 FileProvider = new PhysicalFileProvider(
@@ -83,6 +85,8 @@ namespace Magistry_Image_Identification
 
         private void StartupApp(IServiceProvider serviceProvider)
         {
+            
+
             var imageDatabase = serviceProvider.GetService<ImageDatabase>();
 
             var imagesForTraining = Task.Run(async () => await imageDatabase.GetAll()).Result;

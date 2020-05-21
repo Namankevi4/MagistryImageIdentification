@@ -4,12 +4,12 @@
 @model ImageViewModel
 
 <div class="text-left">
-    <h1>Find Image</h1>
+    <h1>Recognize Image</h1>
     <form method="post" action="/Home/FindImage">
         @Html.LabelFor(model => model.ImagePath, new {@class = "col-form-label col-md-2"})
         <div class="col-md-10">
             @Html.TextBoxFor(model => model.ImagePath, new {@class = "col-md-5", @id = "imagePathId"})
-            <input type="submit" id="showImage" value="Find Image">
+            <input type="submit" id="showImage" value="Recognize Image">
         </div>
         <img id="imgArea" src="">
     </form>

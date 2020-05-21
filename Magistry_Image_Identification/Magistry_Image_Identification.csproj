@@ -12,11 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\ImagesStorage\" />
-    <Folder Include="wwwroot\TempImages\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0">
       <PrivateAssets>all</PrivateAssets>
@@ -25,5 +20,13 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
   </ItemGroup>
+
+  <Target Name="CreateAppDataFolder" AfterTargets="AfterPublish">
+  <MakeDir Directories="$(PublishDir)wwwroot\ImagesStorage" Condition="!Exists('$(PublishDir)wwwroot\ImagesStorage')" /> 
+</Target>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="if $(ConfigurationName) == Debug (&#xD;&#xA;if not exist $(ProjectDir)wwwroot\ImagesStorage mkdir $(ProjectDir)wwwroot\ImagesStorage&#xD;&#xA;)" />
+  </Target>
 
 </Project>
